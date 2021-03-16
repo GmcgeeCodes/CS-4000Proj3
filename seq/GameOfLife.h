@@ -1,13 +1,25 @@
-//
-// Example Stub for Class file for CS 4000, HW #3
-//
+/*
+ * Name: Gerald McGee
+ * GameOfLife.h
+ * Spring 2021
+ * CS4000 
+*/
+
 #include <vector>
-#include "GameOfLifeSeq.cc"
-using namespace std;
-#ifndef CS4000_GAME_OF_LIFE
-#define CS4000_GAME_OF_LIFE
+#include <cstdlib>
+#include <iostream>
+using namespace std; 
+
+#ifndef GAMEOFLIFE_H
+#define GAMEOFLIFE_H
 class GameOfLife {
-public:
-  vector<vector<int> > SimulateLife(vector<vector<int> > &board, int life_cycles);
+
+  public:
+    vector<vector<int> > SimulateLife(vector<vector<int> > &board, int life_cycles);
+    vector<vector<int> > getTheNext(vector<vector<int> > &board);
+    int cells_alive(vector <vector<int> > &board, int xTemp, int yTemp);
+
+  private:
+  
 };
 #endif
