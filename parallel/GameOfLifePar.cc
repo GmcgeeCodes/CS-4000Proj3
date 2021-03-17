@@ -12,6 +12,7 @@
 #include "GameOfLife.h"
 #include <future>
 #include <unistd.h>
+#include <pthread.h>
 
 using namespace std;
 
@@ -59,11 +60,11 @@ vector<vector<int> > GameOfLife::SimulateLife(vector<vector<int> > &board, int l
         thread threads[threadCount];
 		
         for(int k = 0; k < threadCount; k++){
-            threads[k] = thread(getTheNext, board, temp, k, threadCount);
+            threads[k] = thread(getTheNext, std::ref(board), std::ref(temp), k, threadCount);
         }
 
-        for(size_t i = 0; i < threadCount; ++i)
-            threads[i].join();
+        for(thread& thread: threads)
+            thread.join();
 
         board = temp;
     }
